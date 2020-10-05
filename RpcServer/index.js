@@ -4,7 +4,7 @@ class RpcServer {
         this.apiMap = apiMap;
     }
 
-    process(clientData) {
+    async process(clientData) {
         const result = {
             id: 0,
             jsonrpc: '2.0',
@@ -12,10 +12,32 @@ class RpcServer {
         };
 
         if (!RpcServer.isValidRpcData(clientData)) {
-            throw new RpcException('wefewfewf');
+            throw new RpcException(RpcExceptionMap.InvalidRequest).call();
+        }
+
+        // const method = clientData.method;
+        // const params = clientData.params;
+        const { id, method, params } = clientData;
+
+        if (!this.hasMethod(method)) {
+            throw new RpcException(RpcExceptionMap.MethodNotFound).call(id);
+        }
+        result.id = id;
+        try {
+            result.result = await this.callMethod(method, params);
+        } catch (e) {
+            return e.call(id);
         }
 
         return result;
+    }
+
+    callMethod(clientMethod, params) {
+        return this.apiMap[clientMethod](params);
+    }
+
+    hasMethod(clientMethod) {
+        return clientMethod in this.apiMap;
     }
 
     static isValidRpcData(d) {
@@ -38,21 +60,21 @@ class RpcServer {
 *  -32000 to -32099	Server error -  Reserved for implementation-defined server-errors.
  */
 
-
+const RpcExceptionMap = {
+    ParseError: { code: -32700, message: 'Parse error Invalid' },
+    InvalidRequest: { code: -32600, message: 'Invalid Request' },
+    InvalidParams: { code: 32602, message: 'Invalid Params' },
+    InternalError: { code: -32603, message: 'Internal Error' },
+    MethodNotFound: { code: -32601, message: 'Method not found' }
+};
 
 class RpcException {
-    // RpcmapError = {
-    //     InternalError: -32603
-    // };
-    // #jsonFormat
-    #code;
-    constructor(code) {
-        this.code = code;
+    constructor(exception) {
+        this.exception = exception;
     }
-
-    jsonFormat() {
-        return { code: this.code };
+    call(id = 0) {
+        return { id, jsonrpc: '2.0', error: this.exception };
     }
 }
 
-module.exports = { RpcException, RpcServer };
+module.exports = { RpcException, RpcServer, RpcExceptionMap };
