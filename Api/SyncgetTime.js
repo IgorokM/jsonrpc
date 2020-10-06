@@ -4,13 +4,13 @@ const configDb = require('../configDb');
 
 const pool = mysql.createPool(configDb);
 
-module.exports = async function SyncGet({ token }) {
+module.exports = async function SyncGetTime({ token }) {
     let result = null;
     if (!token) {
         throw new RpcException(RpcExceptionMap.InvalidParams);
     }
 
-    const sql = 'SELECT `player`, `data`, `time` FROM `sync` WHERE `player`=?';
+    const sql = 'SELECT `time` FROM `sync` WHERE `player`=?';
     const con = await pool.getConnection();
     console.log(con.threadId);
     const [rows] = await con.execute(sql, [320462]);
