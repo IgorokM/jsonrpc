@@ -1,8 +1,5 @@
 const { RpcException, RpcExceptionMap } = require("../RpcServer");
-const mysql = require('mysql2/promise');
-const configDb = require('../configDb');
-
-const pool = mysql.createPool(configDb);
+const pool = require('../pool');
 
 module.exports = async function SyncGetTime({ token }) {
     let result = null;

@@ -1,6 +1,6 @@
 module.exports = {
     waitForConnections: true,
-    connectionLimit: 100,
+    connectionLimit: 5,
     queueLimit: 0,
     host: "192.168.0.117",
     user: "root",

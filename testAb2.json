@@ -1,8 +1,0 @@
-{
-    "jsonrpc": "2.0",
-    "id": 1,
-    "method": "sync_get_last_time",
-    "params": {
-        "token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzMjA0NjIiLCJwcm9kdWN0Ijoic29saXRhaXJlIiwiZmJpZCI6IjEwMDAwOTkxNDAxNTc0MDgifQ.KP9rYtGylwjFOQWQcq7xkrJvM5lfKsBy5FDTDkjt15aL2U7SiznrL7qwMEec0gQ6iYxi_tPuFqJvbsn2Cp0CUSVNmI10IZGhPnGjL0wQ1uSlVw-ImUZQWAFZ6UXPJC_-sZL48lViqyrpk9lcYzJuIzphOJPH2HXtSgGm-CtOSbw"
-    }
-}
