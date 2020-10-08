@@ -1,6 +1,9 @@
+const syncGet = require('./Api/SyncGet');
+const syncGetLastTime = require('./Api/SyncgetTime');
+
 const ApiMap = {
-    sync_get: require('./Api/SyncGet'),
-    sync_get_last_time:require('./Api/SyncgetTime')
+    sync_get: syncGet,
+    sync_get_last_time: syncGetLastTime
 };
 
 
