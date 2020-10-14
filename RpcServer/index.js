@@ -27,7 +27,7 @@ class RpcException {
 }
 
 class RpcServer {
-    #apiMap = [];
+
     constructor(apiMap) {
         this.apiMap = apiMap;
     }
@@ -43,8 +43,6 @@ class RpcServer {
             throw new RpcException(RpcExceptionMap.InvalidRequest).call();
         }
 
-        // const method = clientData.method;
-        // const params = clientData.params;
         const { id, method, params } = clientData;
 
         if (!this.hasMethod(method)) {
