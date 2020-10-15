@@ -1,21 +1,22 @@
-const express = require('express');
+const app = require('express')();
 const bodyParser = require('body-parser');
 const { RpcServer } = require('./RpcServer');
 const ApiMap = require('./ApiMap');
 
 
-
-const app = express();
 const port = process.env.PORT || 3000;
 const hostname = '127.0.0.1';
 const bodyParserJson = bodyParser.json();
 const server = new RpcServer(ApiMap);
 
-app.post('/', bodyParserJson, hendler);
+// MIDDLEVARES
+
+
+app.post('/', bodyParserJson, finishHendler);
 
 app.listen(port, hostname, () => console.log(`server start on port: ${port}`));
 
-async function hendler(req, res) {
+async function finishHendler(req, res) {
     try {
         res.json(await server.process(req.body));
     } catch (e) {
