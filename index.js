@@ -6,13 +6,10 @@ const ApiMap = require('./ApiMap');
 
 const port = process.env.PORT || 3000;
 const hostname = '127.0.0.1';
-const bodyParserJson = bodyParser.json();
+const bodyJsonParser = bodyParser.json();
 const server = new RpcServer(ApiMap);
 
-// MIDDLEVARES
-
-
-app.post('/', bodyParserJson, finishHendler);
+app.post('/', bodyJsonParser, finishHendler);
 
 app.listen(port, hostname, () => console.log(`server start on port: ${port}`));
 
