@@ -1,15 +1,15 @@
-const app = require('express')();
-const bodyParser = require('body-parser');
+const express = require('express');
+const jsonBodyParser = require('body-parser').json();
 const { RpcServer } = require('./RpcServer');
 const ApiMap = require('./ApiMap');
 
 
+const app = express();
 const port = process.env.PORT || 3000;
 const hostname = '127.0.0.1';
-const bodyJsonParser = bodyParser.json();
 const server = new RpcServer(ApiMap);
 
-app.post('/', bodyJsonParser, finishHendler);
+app.post('/', jsonBodyParser, finishHendler);
 
 app.listen(port, hostname, () => console.log(`server start on port: ${port}`));
 
