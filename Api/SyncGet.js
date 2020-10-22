@@ -8,12 +8,12 @@ module.exports = async function SyncGet({ token }) {
     }
     const payload = jwt.decode(token);
 
-    if(payload === null || payload.product !== 'solitaire'){
+    if (payload === null || payload.product !== 'solitaire') {
         throw new RpcException(RpcExceptionMap.InvalidParams);
     }
     const player = Number(payload.sub);
 
-    if(player === 0 && player === NaN){
+    if (player === 0 && player === NaN) {
         throw new RpcException(RpcExceptionMap.InvalidParams);
     }
 

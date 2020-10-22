@@ -4,15 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "pm2 start ecosystem.config.js",
-    "stop": "pm2 stop rpcServer",
-    "delete": "pm2 delete rpcServer"
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "dependencies": {
-    "body-parser": "1.19.0",
-    "express": "4.17.1",
+    "express": "^4.17.1",
+    "body-parser-json": "1.9.2",
     "jsonwebtoken": "^8.5.1",
     "mysql2": "2.2.5"
+  },
+  "devDependencies": {
+    "nodemon": "2.0.4"
   },
   "keywords": [],
   "author": "",

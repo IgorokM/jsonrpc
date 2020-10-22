@@ -1,5 +1,5 @@
 const express = require('express');
-const jsonBodyParser = require('body-parser').json();
+const jsonBodyParser = require('body-parser-json').json();
 const { RpcServer } = require('./RpcServer');
 const ApiMap = require('./ApiMap');
 
